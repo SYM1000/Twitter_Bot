@@ -44,6 +44,22 @@ def almacenar_ultimo_id(ultimo_id, archivo):
 
 #NOTA: 1112140386171011072
 #NOTA Segunda prueba del bot: 1133902620618371077
+#NOTA ID final: 1133980480678838272
+
+def mostrar_menciones():
+    print("Revisando Tweets\n")
+    ultimo_id = regresar_ultimo_id(NOMBRE_ARCHIVO)
+    menciones = api.mentions_timeline(
+                        ultimo_id,
+                        tweet_mode = "extended")
+                    
+
+    for mencion in reversed(menciones):
+        print(str(mencion.id) +  " - " + mencion.full_text)
+        ultimo_id = mencion.id
+        almacenar_ultimo_id(ultimo_id, NOMBRE_ARCHIVO)
+
+
 
 def responder_tweets():
     print("Revisando Tweets\n")
@@ -77,12 +93,20 @@ def responder_tweets():
             api.update_status("@" + mencion.user.screen_name + " " + respuesta +  "\n\n Este mensaje fue generado por un bot creado por Santiago Yeomans \n\n\n para mas información visitia: https://github.com/SYM1000", mencion.id)
 
 
+def imprimir_timeline():
+    for tweet in api.home_timeline():
+        print (tweet.user.screen_name)
+
 
 #Obtener id de un usuario: http://gettwitterid.com/
 
 #Seguir a un usuario: api.create_friendship(user_id)
 #Para retweetear: mencion.retweet()
+#Acceder a los tweets en la linea del tiempo:   for tweet in api.home_timeline():
+                                                    #print tweet.text
 
 while True:
     responder_tweets()
+    #imprimir_timeline()
+    #mostrar_menciones()
     time.sleep(10)
