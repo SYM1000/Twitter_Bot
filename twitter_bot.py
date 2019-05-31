@@ -73,9 +73,6 @@ def responder_tweets():
         print(str(mencion.id) +  " - " + mencion.full_text)
         ultimo_id = mencion.id
         almacenar_ultimo_id(ultimo_id, NOMBRE_ARCHIVO)
-
-        
-        print ("se retweeteo el tweet")
         
         if "#bot" in mencion.full_text.lower(): 
             api.update_status("@" + mencion.user.screen_name + " " + respuesta_bot, mencion.id)
@@ -83,15 +80,17 @@ def responder_tweets():
 
         elif (mencion.user.screen_name == "anamolina1900"):
             api.update_status("@" + mencion.user.screen_name + " ❤", mencion.id)
+            print("se respondio a un tweet de Ana B")
         
         elif (mencion.user.screen_name == "angela7744"):
             api.update_status("@" + mencion.user.screen_name + " Te amo, Ángela ❤", mencion.id)
+            print("se respondio a un tweet de Angela <3")
 
         else:
             numero = randint(0,11)
             respuesta = respuestas[numero]
             api.update_status("@" + mencion.user.screen_name + " " + respuesta +  "\n\n Este mensaje fue generado por un bot creado por Santiago Yeomans \n\n\n para mas información visitia: https://github.com/SYM1000", mencion.id)
-
+            print("Se respondio al tweet de " + mencion.user.screen_name)
 
 def imprimir_timeline():
     for tweet in api.home_timeline():
@@ -105,6 +104,7 @@ def imprimir_timeline():
 #Acceder a los tweets en la linea del tiempo:   for tweet in api.home_timeline():
                                                     #print tweet.text
 
+#Loop infinito para que siempre se este ejecutando el programa
 while True:
     responder_tweets()
     #imprimir_timeline()
