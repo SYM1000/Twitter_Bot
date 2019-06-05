@@ -87,7 +87,7 @@ def responder_tweets():
             print("se respondio a un tweet de Angela <3")
 
         else:
-            numero = randint(0,11)
+            numero = randint(0,len(respuestas))
             respuesta = respuestas[numero]
             api.update_status("@" + mencion.user.screen_name + " " + respuesta +  "\n\n Este mensaje fue generado por un bot creado por Santiago Yeomans \n\n\n para mas información visitia: https://github.com/SYM1000", mencion.id)
             print("Se respondio al tweet de " + mencion.user.screen_name)
