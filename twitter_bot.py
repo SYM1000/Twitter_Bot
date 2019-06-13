@@ -104,6 +104,10 @@ def imprimir_timeline():
 #Acceder a los tweets en la linea del tiempo:   for tweet in api.home_timeline():
                                                     #print tweet.text
 
+
+
+
+
 #Loop infinito para que siempre se este ejecutando el programa
 while True:
     responder_tweets()
